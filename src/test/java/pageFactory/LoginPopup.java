@@ -44,6 +44,13 @@ public class LoginPopup {
         loginButton.click();
     }
 
+    public void login(String username, String password){
+        openLoginPopup();
+        setUserName(username);
+        setPassword(password);
+        clickLoginButton();
+    }
+
     public boolean getLoggedInResult (){
         return loggedinResult.isDisplayed();
     }

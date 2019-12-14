@@ -7,9 +7,9 @@ import org.junit.jupiter.api.Test;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.io.FileHandler;
 import pageFactory.LoginPopup;
+import pageFactory.WebDriverSingleton;
 
 import java.io.File;
 import java.io.IOException;
@@ -21,9 +21,9 @@ public class LoginTest {
 
     @BeforeEach
     public void openBrowser() {
-        driver = new FirefoxDriver();
+        driver = WebDriverSingleton.getInstance();
+        driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
         driver.get("https://www.tut.by/");
-
     }
 
     @AfterEach
@@ -34,16 +34,10 @@ public class LoginTest {
     @Test
     public void login() throws Exception {
         loginPopup = new LoginPopup(driver);
-        driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
+        loginPopup.login("seleniumtests@tut.by", "123456789zxcvbn");
         takeScreenshot();
-        loginPopup.openLoginPopup();
-        loginPopup.setUserName("seleniumtests@tut.by");
-        loginPopup.setPassword("123456789zxcvbn");
-        loginPopup.clickLoginButton();
-
         Assertions.assertTrue(loginPopup.getLoggedInResult(), "User is not logged in");
     }
-
 
     public void takeScreenshot() {
         File src = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);

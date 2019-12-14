@@ -23,15 +23,20 @@ public class LogoutPopup {
         PageFactory.initElements(driver, this);
     }
 
-    public void openLogoutPopup(){
+    public void openLogoutPopup() {
         loggedinLink.click();
     }
 
-    public void clickLogOutButton (){
+    public void clickLogOutButton() {
         logoutButton.click();
     }
 
-    public boolean getLogOutResult(){
+    public void logout() {
+        openLogoutPopup();
+        clickLogOutButton();
+    }
+
+    public boolean getLogOutResult() {
         return logoutResult.isDisplayed();
     }
 

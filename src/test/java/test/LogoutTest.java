@@ -5,7 +5,6 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.firefox.FirefoxDriver;
 import pageFactory.*;
 
 import java.util.concurrent.TimeUnit;
@@ -17,16 +16,12 @@ public class LogoutTest {
 
     @BeforeEach
     public void openBrowser() {
-        driver = new FirefoxDriver();
+        driver = WebDriverSingleton.getInstance();
+        driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
         driver.get("https://www.tut.by/");
         loginPopup = new LoginPopup(driver);
         logoutPopup = new LogoutPopup(driver);
-        loginPopup.openLoginPopup();
-        loginPopup.setUserName("seleniumtests@tut.by");
-        loginPopup.setPassword("123456789zxcvbn");
-        loginPopup.clickLoginButton();
-
-        driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
+        loginPopup.login("seleniumtests@tut.by", "123456789zxcvbn");
     }
 
     @AfterEach
@@ -35,10 +30,8 @@ public class LogoutTest {
     }
 
     @Test
-    public void logout(){
-        logoutPopup.openLogoutPopup();
-        logoutPopup.clickLogOutButton();
-
+    public void logout() {
+        logoutPopup.logout();
         Assertions.assertTrue(logoutPopup.getLogOutResult(), "User is not logged out");
     }
 }
