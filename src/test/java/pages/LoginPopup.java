@@ -15,23 +15,30 @@ public class LoginPopup {
         this.driver = driver;
     }
 
-    public void openLoginPopup(){
+    public void openLoginPopup() {
         driver.findElement(LOGIN_LINK).click();
     }
 
-    public void setUserName(String username){
+    public void setUserName(String username) {
         driver.findElement(LOGIN).sendKeys(username);
     }
 
-    public void setPassword(String password){
+    public void setPassword(String password) {
         driver.findElement(PASSWORD).sendKeys(password);
     }
 
-    public void clickLoginButton(){
+    public void clickLoginButton() {
         driver.findElement(LOGIN_BUTTON).click();
     }
 
-    public boolean getLoggedInResult (){
+    public void login(String username, String password) {
+        openLoginPopup();
+        setUserName(username);
+        setPassword(password);
+        clickLoginButton();
+    }
+
+    public boolean getLoggedInResult() {
         return driver.findElement(LOGGED_IN_RESULT).isDisplayed();
     }
 }

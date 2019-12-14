@@ -15,15 +15,20 @@ public class LogoutPopup {
         this.driver = driver;
     }
 
-    public void openLogoutPopup(){
+    public void openLogoutPopup() {
         driver.findElement(LOGGED_IN_LINK).click();
     }
 
-    public void clickLogOutButton (){
+    public void clickLogOutButton() {
         driver.findElement(LOGGED_OUT_BUTTON).click();
     }
 
-    public boolean getLogOutResult(){
+    public void logout() {
+        openLogoutPopup();
+        clickLogOutButton();
+    }
+
+    public boolean getLogOutResult() {
         return driver.findElement(LOGGED_OUT_RESULT).isDisplayed();
     }
 }
