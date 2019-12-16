@@ -9,33 +9,17 @@ public class LoginPopup {
     private static final By PASSWORD = By.name("password");
     private static final By LOGIN_BUTTON = By.xpath(".//input[contains(@class, 'button auth__enter')]");
     private static final By LOGGED_IN_RESULT = By.xpath(".//a[contains(@class, 'logedin')]");
-    WebDriver driver;
+    private final WebDriver driver;
 
-    public LoginPopup(WebDriver driver) {
-        this.driver = driver;
-    }
-
-    public void openLoginPopup() {
-        driver.findElement(LOGIN_LINK).click();
-    }
-
-    public void setUserName(String username) {
-        driver.findElement(LOGIN).sendKeys(username);
-    }
-
-    public void setPassword(String password) {
-        driver.findElement(PASSWORD).sendKeys(password);
-    }
-
-    public void clickLoginButton() {
-        driver.findElement(LOGIN_BUTTON).click();
+    public LoginPopup() {
+        this.driver = WebDriverSingleton.getInstance();
     }
 
     public void login(String username, String password) {
-        openLoginPopup();
-        setUserName(username);
-        setPassword(password);
-        clickLoginButton();
+        driver.findElement(LOGIN_LINK).click();
+        driver.findElement(LOGIN).sendKeys(username);
+        driver.findElement(PASSWORD).sendKeys(password);
+        driver.findElement(LOGIN_BUTTON).click();
     }
 
     public boolean getLoggedInResult() {

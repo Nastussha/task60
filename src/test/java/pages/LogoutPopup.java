@@ -9,23 +9,15 @@ public class LogoutPopup {
     private static final By LOGGED_OUT_BUTTON = By.xpath(".//a[contains(text(), 'Выйти')]");
     private static final By LOGGED_OUT_RESULT = By.xpath(".//a[contains(text(), 'Войти')]");
 
-    WebDriver driver;
+    private final WebDriver driver;
 
-    public LogoutPopup(WebDriver driver) {
-        this.driver = driver;
-    }
-
-    public void openLogoutPopup() {
-        driver.findElement(LOGGED_IN_LINK).click();
-    }
-
-    public void clickLogOutButton() {
-        driver.findElement(LOGGED_OUT_BUTTON).click();
+    public LogoutPopup() {
+        this.driver = WebDriverSingleton.getInstance();
     }
 
     public void logout() {
-        openLogoutPopup();
-        clickLogOutButton();
+        driver.findElement(LOGGED_IN_LINK).click();
+        driver.findElement(LOGGED_OUT_BUTTON).click();
     }
 
     public boolean getLogOutResult() {

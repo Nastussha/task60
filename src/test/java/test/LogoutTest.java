@@ -12,6 +12,10 @@ import pages.WebDriverSingleton;
 import java.util.concurrent.TimeUnit;
 
 public class LogoutTest {
+
+    private static final String TEST_LOGIN = "seleniumtests@tut.by";
+    private static final String TEST_PASSWORD = "123456789zxcvbn";
+
     WebDriver driver;
     LoginPopup loginPopup;
     LogoutPopup logoutPopup;
@@ -20,10 +24,9 @@ public class LogoutTest {
     public void openBrowser() {
         driver = WebDriverSingleton.getInstance();
         driver.get("https://www.tut.by/");
-        driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
-        loginPopup = new LoginPopup(driver);
-        loginPopup.login("seleniumtests@tut.by", "123456789zxcvbn");
-        logoutPopup = new LogoutPopup(driver);
+        loginPopup = new LoginPopup();
+        loginPopup.login(TEST_LOGIN, TEST_PASSWORD);
+        logoutPopup = new LogoutPopup();
     }
 
     @AfterEach
