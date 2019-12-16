@@ -7,7 +7,7 @@ import org.openqa.selenium.support.PageFactory;
 
 public class LogoutPopup {
 
-    WebDriver driver;
+    private final WebDriver driver;
 
     @FindBy(xpath = ".//a[contains(@class, 'logedin')]")
     private WebElement loggedinLink;
@@ -18,22 +18,14 @@ public class LogoutPopup {
     @FindBy(xpath = ".//a[contains(text(), 'Войти')]")
     private WebElement logoutResult;
 
-    public LogoutPopup(WebDriver driver) {
-        this.driver = driver;
+    public LogoutPopup() {
+        this.driver = WebDriverSingleton.getInstance();
         PageFactory.initElements(driver, this);
     }
 
-    public void openLogoutPopup() {
-        loggedinLink.click();
-    }
-
-    public void clickLogOutButton() {
-        logoutButton.click();
-    }
-
     public void logout() {
-        openLogoutPopup();
-        clickLogOutButton();
+        loggedinLink.click();
+        logoutButton.click();
     }
 
     public boolean getLogOutResult() {

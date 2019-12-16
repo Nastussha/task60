@@ -7,9 +7,11 @@ import org.junit.jupiter.api.Test;
 import org.openqa.selenium.WebDriver;
 import pageFactory.*;
 
-import java.util.concurrent.TimeUnit;
-
 public class LogoutTest {
+
+    private static final String TEST_LOGIN = "seleniumtests@tut.by";
+    private static final String TEST_PASSWORD = "123456789zxcvbn";
+
     WebDriver driver;
     LoginPopup loginPopup;
     LogoutPopup logoutPopup;
@@ -17,11 +19,10 @@ public class LogoutTest {
     @BeforeEach
     public void openBrowser() {
         driver = WebDriverSingleton.getInstance();
-        driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
         driver.get("https://www.tut.by/");
-        loginPopup = new LoginPopup(driver);
-        logoutPopup = new LogoutPopup(driver);
-        loginPopup.login("seleniumtests@tut.by", "123456789zxcvbn");
+        loginPopup = new LoginPopup();
+        logoutPopup = new LogoutPopup();
+        loginPopup.login(TEST_LOGIN, TEST_PASSWORD);
     }
 
     @AfterEach

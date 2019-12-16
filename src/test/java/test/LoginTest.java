@@ -13,16 +13,18 @@ import pageFactory.WebDriverSingleton;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.concurrent.TimeUnit;
 
 public class LoginTest {
+
+    private static final String TEST_LOGIN = "seleniumtests@tut.by";
+    private static final String TEST_PASSWORD = "123456789zxcvbn";
+
     WebDriver driver;
     LoginPopup loginPopup;
 
     @BeforeEach
     public void openBrowser() {
         driver = WebDriverSingleton.getInstance();
-        driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
         driver.get("https://www.tut.by/");
     }
 
@@ -32,9 +34,9 @@ public class LoginTest {
     }
 
     @Test
-    public void login() throws Exception {
-        loginPopup = new LoginPopup(driver);
-        loginPopup.login("seleniumtests@tut.by", "123456789zxcvbn");
+    public void login() {
+        loginPopup = new LoginPopup();
+        loginPopup.login(TEST_LOGIN, TEST_PASSWORD);
         takeScreenshot();
         Assertions.assertTrue(loginPopup.getLoggedInResult(), "User is not logged in");
     }

@@ -7,7 +7,8 @@ import org.openqa.selenium.support.PageFactory;
 
 public class LoginPopup {
 
-    WebDriver driver;
+    private final WebDriver driver;
+
     @FindBy(className = "enter")
     private WebElement loginLink;
 
@@ -23,35 +24,19 @@ public class LoginPopup {
     @FindBy(xpath = ".//a[contains(@class, 'logedin')]")
     private WebElement loggedinResult;
 
-    public LoginPopup(WebDriver driver) {
-        this.driver = driver;
+    public LoginPopup() {
+        this.driver = WebDriverSingleton.getInstance();
         PageFactory.initElements(driver, this);
     }
 
-    public void openLoginPopup(){
+    public void login(String username, String password) {
         loginLink.click();
-    }
-
-    public void setUserName(String username){
         usernameInput.sendKeys(username);
-    }
-
-    public void setPassword(String password){
         passwordInput.sendKeys(password);
-    }
-
-    public void clickLoginButton(){
         loginButton.click();
     }
 
-    public void login(String username, String password){
-        openLoginPopup();
-        setUserName(username);
-        setPassword(password);
-        clickLoginButton();
-    }
-
-    public boolean getLoggedInResult (){
+    public boolean getLoggedInResult() {
         return loggedinResult.isDisplayed();
     }
 }
