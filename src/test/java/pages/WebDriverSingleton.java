@@ -15,4 +15,9 @@ public class WebDriverSingleton {
         }
         return driver;
     }
+
+    public static void closeBrowser(){
+        driver.close();
+        driver = null;
+    }
 }

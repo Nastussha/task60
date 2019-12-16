@@ -1,6 +1,7 @@
 package pages;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 
 public class HomePage {
@@ -29,6 +30,10 @@ public class HomePage {
     }
 
     public boolean getLoggedInResult() {
-        return driver.findElement(LOGGED_IN_RESULT).isDisplayed();
+        try {
+            return driver.findElement(LOGGED_IN_RESULT).isDisplayed();
+        } catch (NoSuchElementException e){
+            return false;
+        }
     }
 }

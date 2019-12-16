@@ -1,9 +1,9 @@
 package test;
 
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+import io.qameta.allure.Description;
+import io.qameta.allure.Feature;
+import io.qameta.allure.Issue;
+import org.junit.jupiter.api.*;
 import org.openqa.selenium.WebDriver;
 import pages.HomePage;
 import pages.LoggedInHomePage;
@@ -28,9 +28,13 @@ public class LogoutTest {
 
     @AfterEach
     public void closeBrowser() {
-        driver.close();
+        WebDriverSingleton.closeBrowser();
     }
 
+
+    @Feature("Authorization")
+    @Description("Verifies if user can log out")
+    @Issue("ID_2")
     @Test
     public void logout() {
         loggedInHomePage.logout();
