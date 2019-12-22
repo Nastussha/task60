@@ -8,7 +8,7 @@ import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.io.FileHandler;
-import pageFactory.LoginPopup;
+import pageFactory.HomePage;
 import pageFactory.WebDriverSingleton;
 
 import java.io.File;
@@ -20,12 +20,11 @@ public class LoginTest {
     private static final String TEST_PASSWORD = "123456789zxcvbn";
 
     WebDriver driver;
-    LoginPopup loginPopup;
+    HomePage homePage;
 
     @BeforeEach
     public void openBrowser() {
         driver = WebDriverSingleton.getInstance();
-        driver.get("https://www.tut.by/");
     }
 
     @AfterEach
@@ -35,10 +34,11 @@ public class LoginTest {
 
     @Test
     public void login() {
-        loginPopup = new LoginPopup();
-        loginPopup.login(TEST_LOGIN, TEST_PASSWORD);
+        homePage = new HomePage();
+        homePage.load();
+        homePage.login(TEST_LOGIN, TEST_PASSWORD);
         takeScreenshot();
-        Assertions.assertTrue(loginPopup.getLoggedInResult(), "User is not logged in");
+        Assertions.assertTrue(homePage.getLoggedInResult(), "User is not logged in");
     }
 
     public void takeScreenshot() {

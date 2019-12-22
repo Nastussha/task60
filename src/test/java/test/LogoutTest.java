@@ -13,16 +13,15 @@ public class LogoutTest {
     private static final String TEST_PASSWORD = "123456789zxcvbn";
 
     WebDriver driver;
-    LoginPopup loginPopup;
-    LogoutPopup logoutPopup;
+    HomePage homePage;
+    LoggedInHomePage logoutPopup;
 
     @BeforeEach
     public void openBrowser() {
         driver = WebDriverSingleton.getInstance();
-        driver.get("https://www.tut.by/");
-        loginPopup = new LoginPopup();
-        logoutPopup = new LogoutPopup();
-        loginPopup.login(TEST_LOGIN, TEST_PASSWORD);
+        homePage = new HomePage();
+        homePage.load();
+        logoutPopup = homePage.login(TEST_LOGIN, TEST_PASSWORD);
     }
 
     @AfterEach
