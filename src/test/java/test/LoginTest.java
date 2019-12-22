@@ -5,10 +5,8 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.WebDriver;
-import pages.LoginPopup;
+import pages.HomePage;
 import pages.WebDriverSingleton;
-
-import java.util.concurrent.TimeUnit;
 
 public class LoginTest {
 
@@ -16,12 +14,11 @@ public class LoginTest {
     private static final String TEST_PASSWORD = "123456789zxcvbn";
 
     WebDriver driver;
-    LoginPopup loginPopup;
+    HomePage homePage;
 
     @BeforeEach
     public void openBrowser() {
         driver = WebDriverSingleton.getInstance();
-        driver.get("https://www.tut.by/");
     }
 
     @AfterEach
@@ -30,10 +27,11 @@ public class LoginTest {
     }
 
     @Test
-    public void login(){
-        loginPopup = new LoginPopup();
-        loginPopup.login(TEST_LOGIN, TEST_PASSWORD);
-        Assertions.assertTrue(loginPopup.getLoggedInResult(), "User is not logged in");
+    public void login() {
+        homePage = new HomePage();
+        homePage.load();
+        homePage.login(TEST_LOGIN, TEST_PASSWORD);
+        Assertions.assertTrue(homePage.getLoggedInResult(), "User is not logged in");
     }
 
 }
