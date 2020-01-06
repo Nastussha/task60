@@ -9,6 +9,8 @@ import pages.HomePage;
 import pages.LoggedInHomePage;
 import pages.WebDriverSingleton;
 
+import java.net.MalformedURLException;
+
 public class LogoutTest {
 
     private static final String TEST_LOGIN = "seleniumtests@tut.by";
@@ -19,7 +21,7 @@ public class LogoutTest {
     LoggedInHomePage loggedInHomePage;
 
     @BeforeEach
-    public void openBrowser() {
+    public void openBrowser() throws MalformedURLException {
         driver = WebDriverSingleton.getInstance();
         homePage = new HomePage();
         homePage.load();
@@ -36,7 +38,7 @@ public class LogoutTest {
     @Description("Verifies if user can log out")
     @Issue("ID_2")
     @Test
-    public void logout() {
+    public void logout() throws MalformedURLException {
         loggedInHomePage.logout();
         Assertions.assertTrue(loggedInHomePage.getLogOutResult(), "User is not logged out");
     }

@@ -3,6 +3,8 @@ package pages;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
+import java.net.MalformedURLException;
+
 public class LoggedInHomePage {
 
     private static final By LOGGED_IN_LINK = By.xpath(".//a[contains(@class, 'logedin')]");
@@ -15,7 +17,7 @@ public class LoggedInHomePage {
         this.driver = WebDriverSingleton.getInstance();
     }
 
-    public HomePage logout() {
+    public HomePage logout() throws MalformedURLException {
         driver.findElement(LOGGED_IN_LINK).click();
         driver.findElement(LOGGED_OUT_BUTTON).click();
         return new HomePage();

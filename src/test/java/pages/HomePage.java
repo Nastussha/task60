@@ -4,6 +4,8 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 
+import java.net.MalformedURLException;
+
 public class HomePage {
     private static final By LOGIN_LINK = By.className("enter");
     private static final By LOGIN = By.name("login");
@@ -13,7 +15,7 @@ public class HomePage {
     private static final String URL = "https://www.tut.by/";
     private final WebDriver driver;
 
-    public HomePage() {
+    public HomePage() throws MalformedURLException {
         this.driver = WebDriverSingleton.getInstance();
     }
 
@@ -21,7 +23,7 @@ public class HomePage {
         this.driver.get(URL);
     }
 
-    public LoggedInHomePage login(String username, String password) {
+    public LoggedInHomePage login(String username, String password) throws MalformedURLException {
         driver.findElement(LOGIN_LINK).click();
         driver.findElement(LOGIN).sendKeys(username);
         driver.findElement(PASSWORD).sendKeys(password);

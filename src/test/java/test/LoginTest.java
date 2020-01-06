@@ -10,6 +10,8 @@ import org.openqa.selenium.WebDriver;
 import pages.HomePage;
 import pages.WebDriverSingleton;
 
+import java.net.MalformedURLException;
+
 @ExtendWith(MyExtension.class)
 public class LoginTest {
 
@@ -34,7 +36,7 @@ public class LoginTest {
     @Description("Verifies if user can log in")
     @Issue("ID_1")
     @Test
-    public void login() {
+    public void login() throws MalformedURLException {
         homePage = new HomePage();
         homePage.load();
         homePage.login(TEST_LOGIN, TEST_PASSWORD);
