@@ -10,8 +10,8 @@ import java.net.URL;
 import java.util.concurrent.TimeUnit;
 
 public class WebDriverSingleton {
-    public static final String USERNAME = "avlandd";
-    public static final String ACCESS_KEY = "c616b8e4-10cf-4d2b-9e86-1362ca0e39a4";
+    public static final String USERNAME = "Avlano";
+    public static final String ACCESS_KEY = "309c148c-b72a-4d00-b4ed-963fe14374bf";
     public static final String URL = "http://" + USERNAME + ":" + ACCESS_KEY + "@ondemand.saucelabs.com:80/wd/hub";
 
 

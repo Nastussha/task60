@@ -16,7 +16,7 @@ import java.net.MalformedURLException;
 public class LoginTest {
 
     private static final String TEST_LOGIN = "seleniumtests@tut.by";
-    private static final String TEST_PASSWORD = "123456789zxcvbn1";
+    private static final String TEST_PASSWORD = "123456789zxcvbn";
 
     WebDriver driver;
     HomePage homePage;
